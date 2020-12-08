@@ -1,0 +1,173 @@
+package login;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class App
+{
+    public static void main(String[] args) 
+    {
+        AccountList accounts = new AccountList();
+        LoginView login = new LoginView();      
+        SignUpView signup = new SignUpView();
+        BuyerHomeView bHome = new BuyerHomeView();
+        SellerHomeView sHome=new SellerHomeView();
+        
+
+        login.setVisible(true);
+
+        //Login page's button to login the user
+        login.loginButton.addActionListener(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    String username = login.userText.getText();
+                    char password_char[] = login.passText.getPassword();
+                    String password = String.valueOf(password_char);
+                    if(accounts.verify(username, password)=='b'){
+                        System.out.println("Logging in Buyer Account");
+                        login.setVisible(false);                  //LoginView extends JFrame so it inherits setVisible() method from JFrame class
+                        bHome.setVisible(true);
+                    }
+                    else if(accounts.verify(username, password)=='s'){
+                        System.out.println("Logging in to Seller Account");
+                        login.setVisible(false);                  //LoginView extends JFrame so it inherits setVisible() method from JFrame class
+                        sHome.setVisible(true);
+                    }
+                    else if(accounts.verify(username, password)=='f'){
+                        System.out.println("Wrong User or Password");
+                    }
+                    else{
+                        System.out.println("An error has occurred");
+                    }
+//                   
+                }
+            }
+        );
+
+        //Button on Login page to navigate to the Signup page
+        login.signupButton.addActionListener(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    login.setVisible(false);                  //LoginView extends JFrame so it inherits setVisible() method from JFrame class
+                    signup.setVisible(true);                  //Display signup page 
+                }
+            }
+        );
+
+        //Toggle button to switch between signup for buyer and seller account 
+        // Buy or sell toggle for sign up
+	signup.toggleButton.addActionListener(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    if(signup.tog.equals("Buyer")) {
+                        signup.tog = "Seller";
+                    } else {
+                        signup.tog = "Buyer";
+                    }
+                    signup.toggleButton.setText(signup.tog);
+                    //f.repaint();
+                }			
+	        }
+        );
+
+        //This is the button the user clicks when creating their account
+        signup.signupButton.addActionListener(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    String fName = signup.fNameText.getText();
+                    String lName = signup.lNameText.getText();
+                    String username = signup.userText.getText();
+                    String password = signup.passText.getText();
+
+                    //signup.createAccount(fName, lName, username, password);
+                    if(signup.tog == "Buyer")
+                    {
+                        accounts.addAccount(new BuyerAccount(username, password, fName, lName));
+                        System.out.println("Added Buyer Account: "+username);
+                    }
+                    
+                    else if(signup.tog == "Seller") //if tog=="Seller" (the user wants to create a seller account)
+                    { 
+                        accounts.addAccount(new SellerAccount(username, password, fName, lName));
+                        System.out.println("Added Seller Account: "+username);
+                    }
+
+                    signup.setVisible(false);
+                    login.setVisible(true);
+
+                }
+            }
+        );
+        
+        /*
+        signup.signupButton.addActionListener(
+            new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                    String fName = signup.fNameText.getText();
+                    String lName = signup.lNameText.getText();
+                    String username = signup.userText.getText();
+                    //char password_char[] = signup.passText.getText();
+                    String password = String.valueOf(password_char);
+                    if(signup.checkBlankFields()) {
+				
+                        //Creates account
+                        if(signup.tog.equals("Buyer")) {
+                            //Creates temp for BuyerAccount class
+                            BuyerAccount temp = new BuyerAccount(username, password, fName, lName);
+                            
+                            Boolean usernameChecker = false;
+                            
+                            //Add temp to BuyerAccount
+                            for(int i = 0; i > login.buyerList.size(); i++) {
+                                BuyerAccount temp2 = l.buyerList.get(i);
+                                if(temp2.userName.equals(temp.userName)) {
+                                    usernameChecker = true;
+                                }
+                            }
+                            
+                            // Adds account to buyerList
+                            if(usernameChecker == false) {
+                                l.buyerList.add(temp);
+                            }
+                            
+                            l.buyerList.save();
+                            
+                        } else if(signup.tog.equals("Seller")){
+                            //Creates temp for SellerAccount class
+                            SellerAccount temp = new SellerAccount(SU.userEnter.getText(), SU.passEnter.getText(), SU.fNameEnter.getText(), SU.lNameEnter.getText(), 
+                                0, 0, 0, 0);
+                            
+                            Boolean usernameChecker = false;
+                            
+                            //Add temp to SellerAccount
+                            for(int i = 0; i > l.buyerList.size(); i++) {
+                                SellerAccount temp2 = l.sellerList.get(i);
+                                if(temp2.userName.equals(temp.userName)) {
+                                    usernameChecker = true;
+                                }
+                            }
+                            
+                            // Adds account to sellerList
+                            if(usernameChecker == false) {
+                                l.sellerList.add(temp);
+                            }
+                            
+                            l.sellerList.save();
+                            
+                        } else {
+                            //message tells user textfield was left blank
+                            SU.emptyModal(f, SU, backGround);
+                            return;
+                        }
+                    } else {
+                        //message tells user textfield was left blank 
+                        signup.emptyModal(f, SU, backGround);
+                    }
+                }
+			
+            }
+        );
+        */
+
+    }
+}
