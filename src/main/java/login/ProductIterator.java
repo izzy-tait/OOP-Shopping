@@ -11,15 +11,16 @@ import java.util.LinkedList;
  *
  * @author jonat
  */
-public class ProductIterator implements Iterator{
-    LinkedList<Product> productList;
+public class ProductIterator implements Iter{
+    LinkedList<Product> prodList;
     int pos=0;
-    public ProductIterator(LinkedList<Product> p){
-        this.productList=p;
+
+    public ProductIterator(LinkedList<Product> productList) {
+        this.prodList=productList;
     }
     public boolean hasNext() {
         
-        if(pos>=productList.size()){
+        if(pos>=prodList.size()){
             return false;
         }
         else
@@ -28,7 +29,7 @@ public class ProductIterator implements Iterator{
 
     @Override
     public Object next() {
-        Product product=productList.get(pos);
+        Product product=prodList.get(pos);
         pos +=1;
         return product;
     }

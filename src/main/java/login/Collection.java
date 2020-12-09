@@ -12,5 +12,5 @@ import java.util.Iterator;
  * @author jonat
  */
 interface Collection {
-    public Iterator createIterator();
+    public Iter createIterator();
 }

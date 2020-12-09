@@ -8,22 +8,19 @@ package login;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-/**
- *
- * @author jonat
- */
+
 public class Inventory implements Collection {
     LinkedList<Product> productList;
     public Inventory(){
         productList= new LinkedList<Product>();
-    
     }
     public void addProduct(Product p){
         productList.add(p);
     }
+
     @Override
-    public Iterator createIterator() {
-        return (Iterator) new ProductIterator(productList);
+    public Iter createIterator() {
+        return new ProductIterator(productList);
     }
     
     

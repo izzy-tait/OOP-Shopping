@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JTextField;
 
 /**
@@ -27,6 +28,7 @@ public class BuyerHomeView extends JFrame{
     JLabel history = new JLabel();
     JLabel historyTitle = new JLabel("Inventory");
     BuyerAccount currentUser;
+    JList displayInventory = new JList();
     public BuyerHomeView(){
         build();
     }
@@ -42,8 +44,7 @@ public class BuyerHomeView extends JFrame{
 	JLabel cardHolder = new JLabel("Card Holder Name:");
 	JLabel profileName1 = new JLabel(name);
 
-		
-		
+	
 	menuBar.setBounds(0, 0, width-width/4, 100);
 	menuBar.setBackground(backGround);
 	menuBar.setOpaque(true);
@@ -95,11 +96,6 @@ public class BuyerHomeView extends JFrame{
 	profileName.setFont(new Font("Arial", Font.BOLD, 35));
 	profileName.setForeground(Color.white);
 		
-		
-	//Profile picture
-	ImageIcon imgThisImg = new ImageIcon("src/App/pic/picture.png");
-
-	profilePic.setIcon(imgThisImg);
 	profilePic.setBounds(10, 50, 231, 257);
 	profilePic.setOpaque(true);
 	profilePic.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -130,7 +126,6 @@ public class BuyerHomeView extends JFrame{
 		
 	historyTitle.setFont(new Font("Arial", Font.BOLD, 35));
 	historyTitle.setForeground(Color.white);
-		
 		
 		
 	this.add(info);

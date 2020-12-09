@@ -14,8 +14,7 @@ public class App
         BuyerHomeController bHomeCont = new BuyerHomeController();
         login.setVisible(true);
         Inventory inventory = new Inventory();
-        Iterator iterator=(Iterator) inventory.createIterator();
-        //Login page's button to login the user
+        
         login.loginButton.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent e) {

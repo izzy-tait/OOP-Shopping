@@ -9,7 +9,8 @@ package login;
  *
  * @author jonat
  */
-interface Iterator {
+interface Iter {
     boolean hasNext();
     Object next();
 }
+
