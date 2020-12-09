@@ -11,12 +11,14 @@ package login;
  */
 public class BuyerHomeController {
     private Account currentUser;
-    public BuyerHomeController(){
-        
-        
-    }
+    
+    BuyerHomeView bHome = new BuyerHomeView();
+   
     public void setAccount(Account user){
         this.currentUser=user;
+    }
+    public void setView(){
+        bHome.setVisible(true);
     }
     
 }
