@@ -21,27 +21,14 @@ public class AccountList implements Serializable {
         this.accounts.add(anAccount);
         this.accountIterator=accounts.iterator();
     }
-    public char verify(String user,String pass){
+    public Account retrieveAccount(String user,String pass){
         while(accountIterator.hasNext()){
-            Account temp = accountIterator.next();
-            if(temp.getUsername().equals(user) && temp.getPassword().equals(pass)){
-                if(temp instanceof BuyerAccount){
-                    return 'b';
-                }
-                else if(temp instanceof SellerAccount){
-                    return 's';
-                }
+            Account account = accountIterator.next();
+            if(account.getUsername().equals(user) && account.getPassword().equals(pass)){
+                return account;
             }
         }
-        return 'f';
+        return null;
     }
-    /*public void printAccounts(){
-        while(accountIterator.hasNext()){
-            Account temp = accountIterator.next();
-            System.out.println(temp.getUsername());
-            System.out.println(temp.getUsername());
-        }
-    
-    }*/
     
 }

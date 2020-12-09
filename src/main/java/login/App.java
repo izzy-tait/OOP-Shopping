@@ -8,12 +8,12 @@ public class App
     public static void main(String[] args) 
     {
         AccountList accounts = new AccountList();
+        Account currentUser;
         LoginView login = new LoginView();      
         SignUpView signup = new SignUpView();
         BuyerHomeView bHome = new BuyerHomeView();
         SellerHomeView sHome=new SellerHomeView();
-        
-
+        BuyerHomeController bHomeCont = new BuyerHomeController();
         login.setVisible(true);
 
         //Login page's button to login the user
@@ -23,23 +23,24 @@ public class App
                     String username = login.userText.getText();
                     char password_char[] = login.passText.getPassword();
                     String password = String.valueOf(password_char);
-                    if(accounts.verify(username, password)=='b'){
-                        System.out.println("Logging in Buyer Account");
-                        login.setVisible(false);                  //LoginView extends JFrame so it inherits setVisible() method from JFrame class
-                        bHome.setVisible(true);
-                    }
-                    else if(accounts.verify(username, password)=='s'){
-                        System.out.println("Logging in to Seller Account");
-                        login.setVisible(false);                  //LoginView extends JFrame so it inherits setVisible() method from JFrame class
-                        sHome.setVisible(true);
-                    }
-                    else if(accounts.verify(username, password)=='f'){
-                        System.out.println("Wrong User or Password");
+                    Account user=accounts.retrieveAccount(username,password);
+                    if(user!=null){
+                        if(user instanceof BuyerAccount){
+                            login.setVisible(false);
+                            bHome.setVisible(true);
+                            bHomeCont.setAccount(user);
+                        }
+                        else if(user instanceof SellerAccount){
+                            login.setVisible(false);
+                            sHome.setVisible(true);
+                        }
+                        else{
+                            System.out.println("View error");
+                        }
                     }
                     else{
-                        System.out.println("An error has occurred");
+                        System.out.println("No such account");
                     }
-//                   
                 }
             }
         );

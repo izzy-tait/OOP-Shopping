@@ -25,8 +25,6 @@ public class SignUpView extends JFrame
 
     Color background = new Color(151, 186, 255);
 
-    LinkedList<Account> accounts = new LinkedList<Account>();
-
     public SignUpView()
     {
         build();

@@ -7,10 +7,6 @@ package login;
 
 import javax.swing.JFrame;
 
-/**
- *
- * @author jonat
- */
 public class SellerHomeView extends JFrame{
     
 }
