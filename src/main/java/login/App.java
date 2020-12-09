@@ -57,6 +57,7 @@ public class App
                     System.out.println("Changing views");
                     bHome.setVisible(false);
                     bHomeInv.setVisible(true);
+<<<<<<< HEAD
                     
                     int j = (int) Math.floor(width/280);
                     int k;
@@ -94,6 +95,8 @@ public class App
                         bHome.inventory.repaint();
                         
                     }
+=======
+>>>>>>> upstream/master
                 }  
             }      
         );
