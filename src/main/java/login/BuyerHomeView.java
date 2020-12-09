@@ -17,8 +17,7 @@ import javax.swing.JTextField;
  */
 public class BuyerHomeView extends JFrame{
     JLabel menuBar = new JLabel();
-    JButton home = new JButton("Home");
-    JButton LetsShop = new JButton("Let's Shop");
+    JButton signout = new JButton("Sign Out");
     JButton cart = new JButton("Cart");
     JLabel info = new JLabel();
     Color bg = new Color(221,221,221);
@@ -26,7 +25,7 @@ public class BuyerHomeView extends JFrame{
     JLabel cityState = new JLabel();
     JLabel profileCity = new JLabel();
     JLabel history = new JLabel();
-    JLabel historyTitle = new JLabel("Shopping History");
+    JLabel historyTitle = new JLabel("Inventory");
     BuyerAccount currentUser;
     public BuyerHomeView(){
         build();
@@ -38,135 +37,119 @@ public class BuyerHomeView extends JFrame{
         int width=(int)screenSize.getWidth();
         int height = (int)screenSize.getHeight();
         this.setBounds(width/8, 1, width-width/4, height);
-		JLabel profileName = new JLabel(name);
-		JLabel profilePic = new JLabel();
-		JLabel cardHolder = new JLabel("Card Holder Name:");
-		JLabel profileName1 = new JLabel(name);
+	JLabel profileName = new JLabel(name);
+	JLabel profilePic = new JLabel();
+	JLabel cardHolder = new JLabel("Card Holder Name:");
+	JLabel profileName1 = new JLabel(name);
 
 		
 		
-		menuBar.setBounds(0, 0, width-width/4, 100);
-		menuBar.setBackground(backGround);
-		menuBar.setOpaque(true);
-		menuBar.setBorder(BorderFactory.createLineBorder(Color.black));
+	menuBar.setBounds(0, 0, width-width/4, 100);
+	menuBar.setBackground(backGround);
+	menuBar.setOpaque(true);
+	menuBar.setBorder(BorderFactory.createLineBorder(Color.black));
 		
-		//Home label
-		home.setBounds(0, 0, 200, 100);
-		home.setBorder(BorderFactory.createLineBorder(Color.black));
-		home.setLayout(null);
-		home.setHorizontalAlignment(JTextField.CENTER);
+	//Home label
+	signout.setBounds(0, 0, 200, 100);
+	signout.setBorder(BorderFactory.createLineBorder(Color.black));
+	signout.setLayout(null);
+	signout.setHorizontalAlignment(JTextField.CENTER);
 		
-		home.setFont(new Font("Arial", Font.BOLD, 35));
-		home.setBackground(backGround);
-		home.setOpaque(true);
-		home.setForeground(Color.white);
+	signout.setFont(new Font("Arial", Font.BOLD, 35));
+	signout.setBackground(backGround);
+	signout.setOpaque(true);
+	signout.setForeground(Color.white);
 		
+	//Shopping Cart
+	cart.setBounds(width-width/4-200, 0, 200, 100);
+	cart.setBorder(BorderFactory.createLineBorder(Color.black));
+	cart.setLayout(null);
+	cart.setHorizontalAlignment(JTextField.CENTER);
 		
-		//Let's Shop
-		LetsShop.setBounds(200, 0, 200, 100);
-		LetsShop.setBorder(BorderFactory.createLineBorder(Color.black));
-		LetsShop.setLayout(null);
-		LetsShop.setHorizontalAlignment(JLabel.CENTER);
+	cart.setFont(new Font("Arial", Font.BOLD, 35));
+	cart.setBackground(backGround);
+	cart.setOpaque(true);
+	cart.setForeground(Color.white);
 		
-		LetsShop.setFont(new Font("Arial", Font.BOLD, 35));
-		LetsShop.setBackground(backGround);
-		LetsShop.setOpaque(true);
-		LetsShop.setForeground(Color.white);
-		
-		
-		
-		//Shopping Cart
-		cart.setBounds(width-width/4-200, 0, 200, 100);
-		cart.setBorder(BorderFactory.createLineBorder(Color.black));
-		cart.setLayout(null);
-		cart.setHorizontalAlignment(JTextField.CENTER);
-		
-		cart.setFont(new Font("Arial", Font.BOLD, 35));
-		cart.setBackground(backGround);
-		cart.setOpaque(true);
-		cart.setForeground(Color.white);
-		
-		//Profile information
-		info.setBounds(0, 100, width-width/4, height-100);
-		info.setBackground(bg);
-		info.setOpaque(true);
-		info.setBorder(BorderFactory.createLineBorder(Color.black));
+	//Profile information
+	info.setBounds(0, 100, width-width/4, height-100);
+	info.setBackground(bg);
+	info.setOpaque(true);
+	info.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		
-		//Profile section
-		profile.setBounds(20, 70, (width-width/4)/2-30, height-300);
-		profile.setBorder(BorderFactory.createLineBorder(Color.black));
-		profile.setLayout(null);
-		profile.setBackground(backGround);
-		profile.setOpaque(true);
+	//Profile section
+	profile.setBounds(20, 70, (width-width/4)/2-30, height-300);
+	profile.setBorder(BorderFactory.createLineBorder(Color.black));
+	profile.setLayout(null);
+	profile.setBackground(backGround);
+	profile.setOpaque(true);
 		
-		//Profile name
-		profileName.setBounds(0, 0, (width-width/4)/2-30, 40);
-		profileName.setBorder(BorderFactory.createLineBorder(Color.black));
-		profileName.setHorizontalAlignment(JTextField.CENTER);
-		profileName.setBackground(backGround);
-		profileName.setOpaque(true);
+	//Profile name
+	profileName.setBounds(0, 0, (width-width/4)/2-30, 40);
+	profileName.setBorder(BorderFactory.createLineBorder(Color.black));
+	profileName.setHorizontalAlignment(JTextField.CENTER);
+	profileName.setBackground(backGround);
+	profileName.setOpaque(true);
 		
-		profileName.setFont(new Font("Arial", Font.BOLD, 35));
-		profileName.setForeground(Color.white);
+	profileName.setFont(new Font("Arial", Font.BOLD, 35));
+	profileName.setForeground(Color.white);
 		
 		
-		//Profile picture
-		ImageIcon imgThisImg = new ImageIcon("src/App/pic/picture.png");
+	//Profile picture
+	ImageIcon imgThisImg = new ImageIcon("src/App/pic/picture.png");
 
-		profilePic.setIcon(imgThisImg);
-		profilePic.setBounds(10, 50, 231, 257);
-		profilePic.setOpaque(true);
-		profilePic.setBorder(BorderFactory.createLineBorder(Color.black));
+	profilePic.setIcon(imgThisImg);
+	profilePic.setBounds(10, 50, 231, 257);
+	profilePic.setOpaque(true);
+	profilePic.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		
-		//Card holder label
-		cardHolder.setBounds(250, 50, 200, 50);
-		cardHolder.setFont(new Font("Arial", Font.BOLD, 20));
+	//Card holder label
+	cardHolder.setBounds(250, 50, 200, 50);
+	cardHolder.setFont(new Font("Arial", Font.BOLD, 20));
 	
-		//Card holder name
-		profileName1.setBounds(250, 80, 200, 50);
-		profileName1.setFont(new Font("Arial", Font.BOLD, 20));
+	//Card holder name
+	profileName1.setBounds(250, 80, 200, 50);
+	profileName1.setFont(new Font("Arial", Font.BOLD, 20));
 						
-		//Purchase History
-		history.setBounds((width-width/4)/2 + 10, 70, (width-width/4)/2-30, height-300);
-		history.setBorder(BorderFactory.createLineBorder(Color.black));
-		history.setLayout(null);
-		history.setBackground(backGround);
-		history.setOpaque(true);
+	//Purchase History
+	history.setBounds((width-width/4)/2 + 10, 70, (width-width/4)/2-30, height-300);
+	history.setBorder(BorderFactory.createLineBorder(Color.black));
+	history.setLayout(null);
+	history.setBackground(backGround);
+	history.setOpaque(true);
 		
 		
-		//Purchase History Label
-		historyTitle.setBounds(0, 0, (width-width/4)/2-30, 40);
-		historyTitle.setBorder(BorderFactory.createLineBorder(Color.black));
-		historyTitle.setHorizontalAlignment(JTextField.CENTER);
-		historyTitle.setBackground(backGround);
-		historyTitle.setOpaque(true);
+	//Purchase History Label
+	historyTitle.setBounds(0, 0, (width-width/4)/2-30, 40);
+	historyTitle.setBorder(BorderFactory.createLineBorder(Color.black));
+	historyTitle.setHorizontalAlignment(JTextField.CENTER);
+	historyTitle.setBackground(backGround);
+	historyTitle.setOpaque(true);
 		
-		historyTitle.setFont(new Font("Arial", Font.BOLD, 35));
-		historyTitle.setForeground(Color.white);
-		
-		
-		
-		this.add(info);
-		this.add(menuBar);
-		profile.add(cityState);
-		profile.add(profileCity);
-		profile.add(profileName1);
-		profile.add(cardHolder);
-		profile.add(profileName);
-		profile.add(profilePic);
-		menuBar.add(home);
-		menuBar.add(LetsShop);
-		menuBar.add(cart);
-		info.add(profile);
-		history.add(historyTitle);
-		info.add(history);
+	historyTitle.setFont(new Font("Arial", Font.BOLD, 35));
+	historyTitle.setForeground(Color.white);
 		
 		
-		this.setBackground(bg);
 		
-		this.setLayout(null);
+	this.add(info);
+	this.add(menuBar);
+	profile.add(cityState);
+	profile.add(profileCity);
+	profile.add(profileName1);
+	profile.add(cardHolder);
+	profile.add(profileName);
+	profile.add(profilePic);
+	menuBar.add(signout);
+	menuBar.add(cart);
+	info.add(profile);
+	history.add(historyTitle);
+	info.add(history);
+		
+		
+	this.setBackground(bg);
+	this.setLayout(null);
     
     }
 }

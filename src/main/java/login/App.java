@@ -8,14 +8,13 @@ public class App
     public static void main(String[] args) 
     {
         AccountList accounts = new AccountList();
-        Account currentUser;
         LoginView login = new LoginView();      
         SignUpView signup = new SignUpView();
-        BuyerHomeView bHome = new BuyerHomeView();
         SellerHomeView sHome=new SellerHomeView();
         BuyerHomeController bHomeCont = new BuyerHomeController();
         login.setVisible(true);
-
+        Inventory inventory = new Inventory();
+        Iterator iterator=(Iterator) inventory.createIterator();
         //Login page's button to login the user
         login.loginButton.addActionListener(
             new ActionListener() {
@@ -27,8 +26,9 @@ public class App
                     if(user!=null){
                         if(user instanceof BuyerAccount){
                             login.setVisible(false);
-                            bHome.setVisible(true);
-                            bHomeCont.setAccount(user);
+                            bHomeCont.setAccount((BuyerAccount)user);
+                            bHomeCont.setView();
+                            bHomeCont.sendLoginView(login);
                         }
                         else if(user instanceof SellerAccount){
                             login.setVisible(false);
