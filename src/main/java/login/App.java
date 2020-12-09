@@ -36,7 +36,6 @@ public class App
                     System.out.println("Changing views");
                     bHome.setVisible(false);
                     bHomeInv.setVisible(true);
-                    
                 }  
             }      
         );
