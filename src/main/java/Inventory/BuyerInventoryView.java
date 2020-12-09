@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -30,9 +31,19 @@ public class BuyerInventoryView extends JFrame {
     public JPanel inventory = new JPanel();
     public JScrollPane scrollPane = new JScrollPane();
     
+    ArrayList<JButton> editInv = new ArrayList<JButton>();
+    ArrayList<JButton> deleteInv = new ArrayList<JButton>();
+    ArrayList<JButton> addInv = new ArrayList<JButton>();
+    
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    int width=(int)screenSize.getWidth();
+    int height = (int)screenSize.getHeight();
+
+    
     public BuyerInventoryView(){
         build();
     }
+    
     public void build(){
         Color backGround = new Color(151, 186, 255);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -64,26 +75,61 @@ public class BuyerInventoryView extends JFrame {
 	this.setBackground(bg);
 	this.setLayout(null);
         
+        
         inventory.setLayout(new BoxLayout(inventory,BoxLayout.Y_AXIS));
         inventory.setAutoscrolls(true);
         scrollPane=new JScrollPane(inventory);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBounds(50, 30, 800, 800);
-        
-        
-        
+           
     }
-    public void createProductPane(String productName,Double productPrice,int quantity){
-        {
-            JPanel panel = new JPanel();
-            panel.add(new JLabel("Hello"));
-            GridBagConstraints gbc = new GridBagConstraints();
-            gbc.gridwidth = GridBagConstraints.REMAINDER;
-            gbc.weightx = 1;
-            gbc.fill = GridBagConstraints.HORIZONTAL;
-            inventory.add(panel, gbc, 0);
+    
+    /*
+    public void displayProductPanels()
+    {
+        
+        int j = (int) Math.floor(width/280);
+        int k;
+        int x = 10;
+        int y = 20;
+        int i2 = 0;
+        
 
-            validate();
-            repaint();
+
+        for(int i = 0; i < inv.size(); i++) {
+                if(inv.get(i).sellerName.equals(sellerName)) {
+
+
+                        k = (int) Math.floor(i2/j);
+                        y = 20 + 160*k;
+                        x = 10*(i2%j+1) + 270*(i2%j);
+
+                        ProductPanelView temp = new ProductPanelView(inv.get(i), backGround, x, y);
+                        JButton temp1 = new JButton("Edit");
+                        JButton temp2 = new JButton("Delete");
+
+                        temp1.setBounds(30, 105, 90,25);
+                        temp2.setBounds(130, 105, 90, 25);
+
+
+                        editInv.add(temp1);
+                        deleteInv.add(temp2);
+
+
+                        temp.add(editInv.get(i2));
+                        temp.add(deleteInv.get(i2));
+
+                        i2 = i2 +1;
+                        t.add(temp);
+
+                }
+
+        }
+
+        for(int i = 0; i < t.size(); i++) {
+                label.add(t.get(i));
+
+        }
     }
+    */
 }

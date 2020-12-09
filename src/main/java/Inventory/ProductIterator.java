@@ -6,15 +6,16 @@
 package Inventory;
 
 import Inventory.Product;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
  *
  * @author jonat
  */
-public class ProductIterator implements Iter{
-    LinkedList<Product> prodList;
-    int pos=0;
+public class ProductIterator implements Iterator{
+    public LinkedList<Product> prodList;
+    public int pos=0;
 
     public ProductIterator(LinkedList<Product> productList) {
         this.prodList=productList;
