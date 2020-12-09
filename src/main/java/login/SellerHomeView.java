@@ -7,10 +7,13 @@ package login;
 
 import javax.swing.*;
 
+<<<<<<< HEAD
 /**
  *
  * @author 
  */
+=======
+>>>>>>> upstream/master
 public class SellerHomeView extends JFrame{
     private JLabel sellerHomeTitle = new JLabel("Sales and Profits");
     public JButton inventoryButton = new JButton("Inventory");
