@@ -15,36 +15,8 @@ import login.LoginView;
  * @author jonat
  */
 public class BuyerHomeController {
-    private BuyerAccount currentUser;
-    BuyerHomeView bHome = new BuyerHomeView();
-    LoginView lView = new LoginView();
+   
     
-    public void setAccount(BuyerAccount user){
-        this.currentUser=user;
-    }
-    public void sendLoginView(LoginView log){
-        this.lView=log;
-    }
     
-    public void setView(){
-        bHome.setVisible(true);
-        bHome.signout.addActionListener(
-            new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    currentUser=null;
-                    System.out.println("Changing views");
-                    bHome.setVisible(false);
-                    lView.setVisible(true);
-                }    
-            }      
-        ); 
-        
-        bHome.cart.addActionListener(
-            new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    
-                }    
-            }      
-        );  
-    }  
+    
 }

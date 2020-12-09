@@ -51,8 +51,8 @@ public class Product implements Serializable{
         }
 
 	public String returnDate() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return dateFormat.format(date);
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            return dateFormat.format(date);
 	}
 	
 	

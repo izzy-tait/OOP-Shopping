@@ -5,31 +5,30 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextField;
-import login.BuyerAccount;
 
 /**
  *
  * @author jonat
  */
 public class BuyerHomeView extends JFrame{
-    JLabel menuBar = new JLabel();
-    JButton signout = new JButton("Sign Out");
-    JButton cart = new JButton("Cart");
-    JLabel info = new JLabel();
-    Color bg = new Color(221,221,221);
-    JLabel profile = new JLabel();
-    JLabel cityState = new JLabel();
-    JLabel profileCity = new JLabel();
-    JLabel history = new JLabel();
-    JLabel historyTitle = new JLabel("Inventory");
-    BuyerAccount currentUser;
-    JList displayInventory = new JList();
+    public JLabel menuBar = new JLabel();
+    public JButton signout = new JButton("Sign Out");
+    public JButton inventory = new JButton("Inventory");
+    public JButton cart = new JButton("Cart");
+    public JLabel info = new JLabel();
+    public Color bg = new Color(221,221,221);
+    public JLabel profile = new JLabel();
+    public JLabel cityState = new JLabel();
+    public JLabel profileCity = new JLabel();
+    public JLabel history = new JLabel();
+    public JLabel historyTitle = new JLabel("Inventory");
+    public JList displayInventory = new JList();
+    
     public BuyerHomeView(){
         build();
     }
@@ -61,6 +60,16 @@ public class BuyerHomeView extends JFrame{
 	signout.setBackground(backGround);
 	signout.setOpaque(true);
 	signout.setForeground(Color.white);
+        
+        inventory.setBounds(200, 0, 200, 100);
+	inventory.setBorder(BorderFactory.createLineBorder(Color.black));
+	inventory.setLayout(null);
+	inventory.setHorizontalAlignment(JTextField.CENTER);
+		
+	inventory.setFont(new Font("Arial", Font.BOLD, 35));
+	inventory.setBackground(backGround);
+	inventory.setOpaque(true);
+	inventory.setForeground(Color.white);
 		
 	//Shopping Cart
 	cart.setBounds(width-width/4-200, 0, 200, 100);
@@ -139,6 +148,7 @@ public class BuyerHomeView extends JFrame{
 	profile.add(profilePic);
 	menuBar.add(signout);
 	menuBar.add(cart);
+        menuBar.add(inventory);
 	info.add(profile);
 	history.add(historyTitle);
 	info.add(history);

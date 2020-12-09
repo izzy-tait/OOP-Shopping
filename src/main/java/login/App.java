@@ -14,11 +14,42 @@ public class App
         LoginView login = new LoginView();      
         SignUpView signup = new SignUpView();
         SellerHomeView sHome=new SellerHomeView();
-        BuyerHomeController bHomeCont = new BuyerHomeController();
         login.setVisible(true);
-        Inventory inventory = new Inventory();
         SellerInventoryView sellerInventoryView = new SellerInventoryView();
         AddProductView addProductView = new AddProductView();
+        BuyerHomeView bHome = new BuyerHomeView();
+        BuyerInventoryView bHomeInv = new BuyerInventoryView();
+        Inventory productList = new Inventory();
+        
+        bHome.signout.addActionListener(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("Changing views");
+                    bHome.setVisible(false);
+                    login.setVisible(true);
+                }  
+            }      
+        );
+        bHome.inventory.addActionListener(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("Changing views");
+                    bHome.setVisible(false);
+                    bHomeInv.setVisible(true);
+                    
+                }  
+            }      
+        );
+        bHomeInv.home.addActionListener(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("Changing views");
+                    bHomeInv.setVisible(false);
+                    bHome.setVisible(true);
+                }  
+            }      
+        );
+        
         
         login.loginButton.addActionListener(
             new ActionListener() {
@@ -30,9 +61,7 @@ public class App
                     if(user!=null){
                         if(user instanceof BuyerAccount){
                             login.setVisible(false);
-                            bHomeCont.setAccount((BuyerAccount)user);
-                            bHomeCont.setView();
-                            bHomeCont.sendLoginView(login);
+                            bHome.setVisible(true);
                         }
                         else if(user instanceof SellerAccount){
                             login.setVisible(false);
