@@ -1,5 +1,8 @@
 package login;
 
+import Inventory.Inventory;
+import SellerHome.SellerHomeView;
+import BuyerHome.BuyerHomeController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -7,7 +10,7 @@ public class App
 {
     public static void main(String[] args) 
     {
-        AccountList accounts = new AccountList();
+        AccountList accounts = AccountList.getInstance();
         LoginView login = new LoginView();      
         SignUpView signup = new SignUpView();
         SellerHomeView sHome=new SellerHomeView();

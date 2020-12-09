@@ -3,14 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package login;
+package Inventory;
 
-import java.util.Iterator;
+import javax.swing.JPanel;
 
 /**
  *
  * @author jonat
  */
-interface Collection {
-    public Iter createIterator();
+public class InventoryView extends JPanel{
+    JList inventoryDisplay;
+    public InventoryView(){
+        build();
+    }
+    public void build(){
+        
+    
+    }
 }

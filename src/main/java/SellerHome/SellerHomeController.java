@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package login;
+package SellerHome;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import login.Account;
 
 /**
  *
@@ -26,7 +27,7 @@ public class SellerHomeController {
     {
         sHome.setVisible(true);
         
-        sHome.inventoryButton.addActionListener(
+        sHome.Inventory.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     

@@ -7,9 +7,14 @@ public class AccountList implements Serializable {
     
     private LinkedList<Account> accounts;
     private Iterator<Account> accountIterator;
-    public AccountList(){
+    private static AccountList instance = new AccountList();
+    private AccountList(){
         this.accounts=new LinkedList<Account>();
         this.accountIterator=accounts.iterator();
+    }
+    public static AccountList getInstance(){
+        return instance;
+    
     }
     public LinkedList<Account> getAccounts()
     {

@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package login;
+package Inventory;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 
@@ -21,7 +20,5 @@ public class Inventory implements Collection {
     @Override
     public Iter createIterator() {
         return new ProductIterator(productList);
-    }
-    
-    
+    }    
 }

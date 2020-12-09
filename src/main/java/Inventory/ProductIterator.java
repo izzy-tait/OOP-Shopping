@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package login;
+package Inventory;
 
+import Inventory.Product;
 import java.util.LinkedList;
 
 /**
@@ -26,8 +27,6 @@ public class ProductIterator implements Iter{
         else
             return true;
         }
-
-    @Override
     public Object next() {
         Product product=prodList.get(pos);
         pos +=1;

@@ -1,4 +1,4 @@
-package login;
+package BuyerHome;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextField;
+import login.BuyerAccount;
 
 /**
  *

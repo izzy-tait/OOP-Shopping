@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package login;
+package Inventory;
+
+import Inventory.Iter;
+import java.util.Iterator;
 
 /**
  *
  * @author jonat
  */
-interface Iter {
-    boolean hasNext();
-    Object next();
+interface Collection {
+    public Iter createIterator();
 }
-
