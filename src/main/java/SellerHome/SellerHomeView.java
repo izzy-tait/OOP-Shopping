@@ -19,7 +19,7 @@ public class SellerHomeView extends JFrame{
     
     	JLabel menuBar = new JLabel();
 	JButton home = new JButton("Home");
-	JButton Inventory = new JButton("Inventory");
+	public JButton Inventory = new JButton("Inventory");
 	JLabel info = new JLabel();
 	Color bg = new Color(221,221,221);
 	JLabel profile = new JLabel();
