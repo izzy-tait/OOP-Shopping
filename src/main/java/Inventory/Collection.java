@@ -5,7 +5,7 @@
  */
 package Inventory;
 
-import Inventory.Iter;
+
 import java.util.Iterator;
 
 /**
@@ -13,5 +13,5 @@ import java.util.Iterator;
  * @author jonat
  */
 interface Collection {
-    public Iter createIterator();
+    public Iterator createIterator();
 }

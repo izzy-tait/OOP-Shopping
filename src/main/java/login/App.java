@@ -3,8 +3,13 @@ package login;
 import Inventory.*;
 import SellerHome.*;
 import BuyerHome.*;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JButton;
 
 public class App
 {
@@ -19,7 +24,21 @@ public class App
         AddProductView addProductView = new AddProductView();
         BuyerHomeView bHome = new BuyerHomeView();
         BuyerInventoryView bHomeInv = new BuyerInventoryView();
-        Inventory productList = new Inventory();
+        Inventory inventory = new Inventory();
+        
+        //test
+        Product oreo = new Product("Isabel", "Oreo", "4.99", "6", "50");
+        inventory.addProduct(oreo);
+                
+        //public Product(String asellerName, String aname, String aprice, String acost, String aquantity) {
+        
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int width=(int)screenSize.getWidth();
+        int height = (int)screenSize.getHeight();
+        
+        ArrayList<JButton> editInv = new ArrayList<JButton>();
+	ArrayList<JButton> deleteInv = new ArrayList<JButton>();
+	ArrayList<JButton> addInv = new ArrayList<JButton>();
         
         bHome.signout.addActionListener(
             new ActionListener() {
@@ -30,6 +49,8 @@ public class App
                 }  
             }      
         );
+        
+        //Button to navigate to Inventory on Buyer Home page 
         bHome.inventory.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -37,9 +58,47 @@ public class App
                     bHome.setVisible(false);
                     bHomeInv.setVisible(true);
                     
+                    int j = (int) Math.floor(width/280);
+                    int k;
+                    int x = 10;
+                    int y = 20;
+                    int i2 = 0;
+                    
+                    Iterator inventoryIterator = inventory.createIterator();
+                    while (inventoryIterator.hasNext())
+                    {
+                        Product p = (Product)inventoryIterator.next();
+                        System.out.println(p.getProductName());
+                        
+                        k = (int) Math.floor(i2/j);
+                        y = 20 + 160*k;
+                        x = 10*(i2%j+1) + 270*(i2%j);
+
+                        ProductPanelView temp = new ProductPanelView(p);
+                        JButton temp1 = new JButton("Edit");
+                        JButton temp2 = new JButton("Delete");
+
+                        temp1.setBounds(30, 105, 90,25);
+                        temp2.setBounds(130, 105, 90, 25);
+
+
+                        editInv.add(temp1);
+                        deleteInv.add(temp2);
+
+
+                        temp.add(editInv.get(i2));
+                        temp.add(deleteInv.get(i2));
+
+                        i2 = i2 +1;
+                        bHomeInv.inventory.add(temp);
+                        bHome.inventory.repaint();
+                        
+                    }
                 }  
             }      
         );
+        
+        
         bHomeInv.home.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent e) {

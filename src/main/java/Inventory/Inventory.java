@@ -5,11 +5,12 @@
  */
 package Inventory;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 
 public class Inventory implements Collection {
-    LinkedList<Product> productList;
+    public LinkedList<Product> productList;
     public Inventory(){
         productList= new LinkedList<Product>();
     }
@@ -18,7 +19,8 @@ public class Inventory implements Collection {
     }
 
     @Override
-    public Iter createIterator() {
+    public Iterator createIterator() {
         return new ProductIterator(productList);
-    }    
+    }  
+    
 }
