@@ -1,8 +1,8 @@
 package login;
 
-import Inventory.Inventory;
-import SellerHome.SellerHomeView;
-import BuyerHome.BuyerHomeController;
+import Inventory.*;
+import SellerHome.*;
+import BuyerHome.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,6 +17,8 @@ public class App
         BuyerHomeController bHomeCont = new BuyerHomeController();
         login.setVisible(true);
         Inventory inventory = new Inventory();
+        SellerInventoryView sellerInventoryView = new SellerInventoryView();
+        AddProductView addProductView = new AddProductView();
         
         login.loginButton.addActionListener(
             new ActionListener() {
@@ -102,7 +104,33 @@ public class App
             }
         );
         
+       //The button on seller home page to navigate to the Inventory 
+       sHome.Inventory.addActionListener(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    sHome.setVisible(false);
+                    sellerInventoryView.setVisible(true);
+                }
+            }
+        );
        
-
+       //The button on the Seller Inventory page to add new item to the inventory
+       sellerInventoryView.addItem.addActionListener(
+            new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                  addProductView.setVisible(true);  
+                }
+            });
+       
+       //Button on Seller Inventory page to get back to Seller Home page
+        sellerInventoryView.home.addActionListener(
+            new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                    sellerInventoryView.setVisible(false);
+                    sHome.setVisible(true);
+                }
+            });
+        
+      
     }
 }
