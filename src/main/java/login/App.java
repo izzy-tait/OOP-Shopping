@@ -7,12 +7,10 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Iterator;
-import javax.swing.JButton;
 
 public class App
-{
+{   
     public static void main(String[] args) 
     {
         AccountList accounts = AccountList.getInstance();
@@ -25,21 +23,33 @@ public class App
         BuyerHomeView bHome = new BuyerHomeView();
         BuyerInventoryView bHomeInv = new BuyerInventoryView();
         Inventory inventory = new Inventory();
-        
-        //test
-        Product oreo = new Product("Isabel", "Oreo", "4.99", "6", "50");
-        inventory.addProduct(oreo);
-                
+      
         //public Product(String asellerName, String aname, String aprice, String acost, String aquantity) {
         
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int width=(int)screenSize.getWidth();
         int height = (int)screenSize.getHeight();
         
-        ArrayList<JButton> editInv = new ArrayList<JButton>();
-	ArrayList<JButton> deleteInv = new ArrayList<JButton>();
-	ArrayList<JButton> addInv = new ArrayList<JButton>();
+        //ArrayList<JButton> editInv = new ArrayList<JButton>();
+	//ArrayList<JButton> deleteInv = new ArrayList<JButton>();
+	//ArrayList<JButton> addInv = new ArrayList<JButton>();
         
+        addProductView.submit.addActionListener(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    String prodName = addProductView.pNameText.getText();
+                    String prodPrice = addProductView.priceText.getText();
+                    String prodCost = addProductView.costText.getText();
+                    String prodQuan = addProductView.prodQuanText.getText();
+                    String sellerName = addProductView.sNameText.getText();
+                    
+                    inventory.addProduct(new Product(sellerName,prodName,prodPrice,prodCost,prodQuan));
+                    
+                    addProductView.setVisible(false);
+                    sellerInventoryView.setVisible(true);
+                }  
+            }      
+        );
         bHome.signout.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -57,50 +67,19 @@ public class App
                     System.out.println("Changing views");
                     bHome.setVisible(false);
                     bHomeInv.setVisible(true);
-<<<<<<< HEAD
-                    
-                    int j = (int) Math.floor(width/280);
-                    int k;
-                    int x = 10;
-                    int y = 20;
-                    int i2 = 0;
                     
                     Iterator inventoryIterator = inventory.createIterator();
                     while (inventoryIterator.hasNext())
                     {
-                        Product p = (Product)inventoryIterator.next();
+                        Product p = (Product)inventoryIterator.next();//gets product
                         System.out.println(p.getProductName());
-                        
-                        k = (int) Math.floor(i2/j);
-                        y = 20 + 160*k;
-                        x = 10*(i2%j+1) + 270*(i2%j);
-
-                        ProductPanelView temp = new ProductPanelView(p);
-                        JButton temp1 = new JButton("Edit");
-                        JButton temp2 = new JButton("Delete");
-
-                        temp1.setBounds(30, 105, 90,25);
-                        temp2.setBounds(130, 105, 90, 25);
-
-
-                        editInv.add(temp1);
-                        deleteInv.add(temp2);
-
-
-                        temp.add(editInv.get(i2));
-                        temp.add(deleteInv.get(i2));
-
-                        i2 = i2 +1;
-                        bHomeInv.inventory.add(temp);
-                        bHome.inventory.repaint();
-                        
+                        bHomeInv.addProductPanel(p);
                     }
-=======
->>>>>>> upstream/master
+                    //bHomeInv.pack();
+                    System.out.println("Added All Inventory");
                 }  
             }      
         );
-        
         
         bHomeInv.home.addActionListener(
             new ActionListener() {
@@ -120,6 +99,7 @@ public class App
                     char password_char[] = login.passText.getPassword();
                     String password = String.valueOf(password_char);
                     Account user=accounts.retrieveAccount(username,password);
+                    
                     if(user!=null){
                         if(user instanceof BuyerAccount){
                             login.setVisible(false);
@@ -201,6 +181,13 @@ public class App
                 public void actionPerformed(ActionEvent e) {
                     sHome.setVisible(false);
                     sellerInventoryView.setVisible(true);
+                    Iterator inventoryIterator = inventory.createIterator();
+                    while (inventoryIterator.hasNext())
+                    {
+                        Product p = (Product)inventoryIterator.next();//gets product
+                        System.out.println(p.getProductName());
+                        sellerInventoryView.addProductPanel(p);
+                    }
                 }
             }
         );
@@ -209,7 +196,7 @@ public class App
        sellerInventoryView.addItem.addActionListener(
             new ActionListener(){
                 public void actionPerformed(ActionEvent e){
-                  addProductView.setVisible(true);  
+                  addProductView.setVisible(true); 
                 }
             });
        
@@ -220,7 +207,7 @@ public class App
                     sellerInventoryView.setVisible(false);
                     sHome.setVisible(true);
                 }
-            });
+        });
         
       
     }

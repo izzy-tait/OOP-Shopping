@@ -21,13 +21,11 @@ public class ProductIterator implements Iterator{
         this.prodList=productList;
     }
     public boolean hasNext() {
-        
-        if(pos>=prodList.size()){
-            return false;
-        }
-        else
+        if(pos<prodList.size()){
             return true;
         }
+        return false;
+    }
     public Object next() {
         Product product=prodList.get(pos);
         pos +=1;

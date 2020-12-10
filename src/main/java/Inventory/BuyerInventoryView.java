@@ -10,6 +10,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.Toolkit;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -17,8 +19,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 
 /**
  *
@@ -30,10 +34,6 @@ public class BuyerInventoryView extends JFrame {
     public Color bg = new Color(221,221,221);
     public JPanel inventory = new JPanel();
     public JScrollPane scrollPane = new JScrollPane();
-    
-    ArrayList<JButton> editInv = new ArrayList<JButton>();
-    ArrayList<JButton> deleteInv = new ArrayList<JButton>();
-    ArrayList<JButton> addInv = new ArrayList<JButton>();
     
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int)screenSize.getWidth();
@@ -75,61 +75,33 @@ public class BuyerInventoryView extends JFrame {
 	this.setBackground(bg);
 	this.setLayout(null);
         
-        
-        inventory.setLayout(new BoxLayout(inventory,BoxLayout.Y_AXIS));
+        //inventory.setBounds(0, 100, width-width/4, height-100);
+        inventory.setLayout(new BoxLayout(inventory,BoxLayout.Y_AXIS));//setting box layout for inventory view
+        inventory.setBorder(BorderFactory.createLineBorder(Color.black));
         inventory.setAutoscrolls(true);
-        scrollPane=new JScrollPane(inventory);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setBounds(50, 30, 800, 800);
+        //scrollPane=new JScrollPane(inventory,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        //scrollPane.setBounds(0, 100, width-width/6, height-200);
+        this.add(inventory);//scroll bar
+        
+        /*JScrollBar s = new JScrollBar(JScrollBar.VERTICAL, 0, 50, 0, height);
+        s.setBounds(width-width/4-20, 100, 20, height-200);
+
+        //Action listener for scroll bar
+        s.addAdjustmentListener(new AdjustmentListener() {  
+                public void adjustmentValueChanged(AdjustmentEvent e) {  
+                        inventory.setLocation((0), (int) -s.getValue()*2+100);
+
+                        //this.repaint();
+                }  
+        });  
+        
+        inventory.add(s);
+        */
            
     }
-    
-    /*
-    public void displayProductPanels()
-    {
-        
-        int j = (int) Math.floor(width/280);
-        int k;
-        int x = 10;
-        int y = 20;
-        int i2 = 0;
-        
-
-
-        for(int i = 0; i < inv.size(); i++) {
-                if(inv.get(i).sellerName.equals(sellerName)) {
-
-
-                        k = (int) Math.floor(i2/j);
-                        y = 20 + 160*k;
-                        x = 10*(i2%j+1) + 270*(i2%j);
-
-                        ProductPanelView temp = new ProductPanelView(inv.get(i), backGround, x, y);
-                        JButton temp1 = new JButton("Edit");
-                        JButton temp2 = new JButton("Delete");
-
-                        temp1.setBounds(30, 105, 90,25);
-                        temp2.setBounds(130, 105, 90, 25);
-
-
-                        editInv.add(temp1);
-                        deleteInv.add(temp2);
-
-
-                        temp.add(editInv.get(i2));
-                        temp.add(deleteInv.get(i2));
-
-                        i2 = i2 +1;
-                        t.add(temp);
-
-                }
-
-        }
-
-        for(int i = 0; i < t.size(); i++) {
-                label.add(t.get(i));
-
-        }
+    public void addProductPanel(Product p){
+        JPanel product = new ProductPanelView(p);
+        inventory.add(product);
+        //inventory.revalidate();
     }
-    */
 }

@@ -106,7 +106,6 @@ public class SellerHomeView extends JFrame{
 		info.add(profile);
 		
 		
-		
 		//Profile name
 		profileName.setBounds(0, 0, (width-width/4)-40, 40);
 		profileName.setBorder(BorderFactory.createLineBorder(Color.black));

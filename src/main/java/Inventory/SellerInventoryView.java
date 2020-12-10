@@ -36,7 +36,7 @@ public class SellerInventoryView extends JFrame{
     JButton summit1 = new JButton("Submit");
     JButton Cancel = new JButton("Cancel");
     JButton Confirm	= new JButton("Confirm");
-
+    public JPanel inventory = new JPanel();
 
 
     public SellerInventoryView()
@@ -72,7 +72,7 @@ public class SellerInventoryView extends JFrame{
 
 
 
-        //Edit Inventory
+        /*//Edit Inventory
         Inventory.setBounds(200, 0, 200, 100);
         Inventory.setBorder(BorderFactory.createLineBorder(Color.black));
         Inventory.setLayout(null);
@@ -82,11 +82,11 @@ public class SellerInventoryView extends JFrame{
         Inventory.setBackground(backGround);
         Inventory.setOpaque(true);
         Inventory.setForeground(Color.white);
-
+        */
         menuBar.add(Inventory);
 
 
-        //Home label
+        //addItem label
         addItem.setBounds(width-width/4-200, 0, 200, 100);
         addItem.setBorder(BorderFactory.createLineBorder(Color.black));
         addItem.setLayout(null);
@@ -98,17 +98,23 @@ public class SellerInventoryView extends JFrame{
         addItem.setForeground(Color.white);
 
         menuBar.add(addItem);
-
+        /*
         //Profile information
         info.setBounds(0, 100, width-width/4-20, height*2);
         info.setBackground(bg);
         info.setOpaque(true);
 
-
         this.add(info);
-
-
+        */
+        //inventory.setBounds(0, 100, width-width/4, height-100);
+        inventory.setLayout(new BoxLayout(inventory,BoxLayout.Y_AXIS));//setting box layout for inventory view
+        inventory.setBorder(BorderFactory.createLineBorder(Color.black));
+        inventory.setAutoscrolls(true);
+        //scrollPane=new JScrollPane(inventory,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        //scrollPane.setBounds(0, 100, width-width/6, height-200);
+        this.add(inventory);//scroll bar
         //scroll bar
+        /*
         JScrollBar s = new JScrollBar(JScrollBar.VERTICAL, 0, 50, 0, height);
         s.setBounds(width-width/4-20, 100, 20, height-200);
 
@@ -119,13 +125,11 @@ public class SellerInventoryView extends JFrame{
 
                         //this.repaint();
                 }  
-        });  
-
-
+        });
 
         this.add(s);
 
-
+*/
 
 
 
@@ -135,5 +139,10 @@ public class SellerInventoryView extends JFrame{
         this.setLayout(null);
 
        }
+    public void addProductPanel(Product p){
+        JPanel product = new ProductPanelView(p);
+        inventory.add(product);
+        //inventory.revalidate();
+    }
 
 }

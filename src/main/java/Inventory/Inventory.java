@@ -18,7 +18,6 @@ public class Inventory implements Collection {
         productList.add(p);
     }
 
-    @Override
     public Iterator createIterator() {
         return new ProductIterator(productList);
     }  
