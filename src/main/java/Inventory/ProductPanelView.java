@@ -26,7 +26,7 @@ public class ProductPanelView extends JPanel{
         Font fn = new Font("Arial", Font.BOLD, 25);
         Font fn1 = new Font("Arial", Font.BOLD, 15);
         this.setBounds(150, 150, 270, 140);    //first two parameters were xloc and yloc
-
+        //this.setBounds(null);
         //Product name
         JLabel name = new JLabel(p.getProductName());
         name.setBounds(40,5, 120, 30);

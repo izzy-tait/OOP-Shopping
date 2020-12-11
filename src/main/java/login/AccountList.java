@@ -1,22 +1,23 @@
 package login;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
 public class AccountList implements Serializable {
     
-    private LinkedList<Account> accounts;
+    private ArrayList<Account> accounts;
     private Iterator<Account> accountIterator;
     private static AccountList instance = new AccountList();
     private AccountList(){
-        this.accounts=new LinkedList<Account>();
+        this.accounts=new ArrayList<Account>();
         this.accountIterator=accounts.iterator();
     }
     public static AccountList getInstance(){
         return instance;
     
     }
-    public LinkedList<Account> getAccounts()
+    public ArrayList<Account> getAccounts()
     {
         return this.accounts; 
     }

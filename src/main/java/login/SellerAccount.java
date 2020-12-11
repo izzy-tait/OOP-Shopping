@@ -1,10 +1,12 @@
 package login;
 import Inventory.Product;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class SellerAccount extends Account {
+public class SellerAccount extends Account implements Serializable {
 
     private double monthlyRevenue;
     private double monthlyIncome;

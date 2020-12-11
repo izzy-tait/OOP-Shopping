@@ -5,14 +5,16 @@
  */
 package Inventory;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
 
-public class Inventory implements Collection {
-    public LinkedList<Product> productList;
+public class Inventory implements Collection,Serializable {
+    public ArrayList<Product> productList;
     public Inventory(){
-        productList= new LinkedList<Product>();
+        productList= new ArrayList<Product>();
     }
     public void addProduct(Product p){
         productList.add(p);

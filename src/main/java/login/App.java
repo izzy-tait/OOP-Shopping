@@ -23,16 +23,35 @@ public class App
         BuyerHomeView bHome = new BuyerHomeView();
         BuyerInventoryView bHomeInv = new BuyerInventoryView();
         Inventory inventory = new Inventory();
-      
+        
+       SerilizationList<BuyerAccount> buyerList = new SerilizationList<BuyerAccount>("BuyerList.ser");
+       SerilizationList<SellerAccount> sellerList = new SerilizationList<>("SellerList.ser");
+       SerilizationList<Account> accountList = new SerilizationList<>("AccountList.ser");
+       SerilizationList<Product> productList = new SerilizationList<>("productList.ser");
+       SerilizationList<Inventory> inventoryList = new SerilizationList<>("InventoryList.ser");
+       SerilizationList<AccountList> accountListLst = new SerilizationList<>("AccountListLst.ser");
+       buyerList.load();
+       sellerList.load();
+       accountList.load();
+       productList.load();
+       inventoryList.load();
+       accountListLst.load();
         //public Product(String asellerName, String aname, String aprice, String acost, String aquantity) {
         
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int width=(int)screenSize.getWidth();
-        int height = (int)screenSize.getHeight();
+        //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        //int width=(int)screenSize.getWidth();
+        //int height = (int)screenSize.getHeight();jjj
         
         //ArrayList<JButton> editInv = new ArrayList<JButton>();
 	//ArrayList<JButton> deleteInv = new ArrayList<JButton>();
 	//ArrayList<JButton> addInv = new ArrayList<JButton>();
+        
+        Product oreo = new Product("Isabel", "Oreo", "4.99", "6", "50");
+        inventory.addProduct(oreo);
+        Product oreo1 = new Product("Jon", "Pasta", "5.99", "6", "50");
+        inventory.addProduct(oreo1);
+        inventory.addProduct(oreo1);
+        inventory.addProduct(oreo1);
         
         addProductView.submit.addActionListener(
             new ActionListener() {
@@ -159,12 +178,17 @@ public class App
                     if(signup.tog == "Buyer")
                     {
                         accounts.addAccount(new BuyerAccount(username, password, fName, lName));
+                        buyerList.save();
+                        accountList.save();
+                        accountListLst.save();
                         System.out.println("Added Buyer Account: "+username);
                     }
                     
                     else if(signup.tog == "Seller") //if tog=="Seller" (the user wants to create a seller account)
                     { 
                         accounts.addAccount(new SellerAccount(username, password, fName, lName));
+                        sellerList.save();
+                        accountList.save();
                         System.out.println("Added Seller Account: "+username);
                     }
 
@@ -181,6 +205,7 @@ public class App
                 public void actionPerformed(ActionEvent e) {
                     sHome.setVisible(false);
                     sellerInventoryView.setVisible(true);
+                    
                     Iterator inventoryIterator = inventory.createIterator();
                     while (inventoryIterator.hasNext())
                     {
@@ -197,6 +222,8 @@ public class App
             new ActionListener(){
                 public void actionPerformed(ActionEvent e){
                   addProductView.setVisible(true); 
+                  productList.save();
+                  inventoryList.save();
                 }
             });
        

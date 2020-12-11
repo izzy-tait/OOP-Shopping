@@ -4,40 +4,26 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.event.AdjustmentListener;
-import java.awt.event.AdjustmentEvent;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import javax.swing.*;
-
-
+import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
+import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS;
 
 public class SellerInventoryView extends JFrame{
     //backGround
-     Color backGround = new Color(151, 186, 255);
-
+    private Color backGround = new Color(151, 186, 255);
+    private Color bg = new Color(221,221,221);
      // java - get screen size using the Toolkit class
-     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-     // the screen width
-     int width = (int)screenSize.getWidth();
-
-     // the screen height
-     int height = (int)screenSize.getHeight();
+    private int width = (int)screenSize.getWidth();// the screen width
+    private int height = (int)screenSize.getHeight();// the screen height
      
-    JLabel menuBar = new JLabel();
-    public JButton home = new JButton("Home");
-    JButton Inventory = new JButton("Inventory");
-    JLabel info = new JLabel();
-    Color bg = new Color(221,221,221);
-    JLabel editField = new JLabel();
+    private  JLabel menuBar = new JLabel();
+    public  JButton home = new JButton("Home");
+    private JButton Inventory = new JButton("Inventory");
     public JButton addItem = new JButton("Add Item");
-    JButton summit = new JButton("Submit");
-    JButton summit1 = new JButton("Submit");
-    JButton Cancel = new JButton("Cancel");
-    JButton Confirm	= new JButton("Confirm");
-    public JPanel inventory = new JPanel();
-
+    private JPanel inventory = new JPanel();
+    private JScrollPane scroll = new JScrollPane();
 
     public SellerInventoryView()
     {
@@ -69,22 +55,7 @@ public class SellerInventoryView extends JFrame{
         home.setForeground(Color.white);
 
         menuBar.add(home);
-
-
-
-        /*//Edit Inventory
-        Inventory.setBounds(200, 0, 200, 100);
-        Inventory.setBorder(BorderFactory.createLineBorder(Color.black));
-        Inventory.setLayout(null);
-        Inventory.setHorizontalAlignment(JLabel.CENTER);
-
-        Inventory.setFont(new Font("Arial", Font.BOLD, 35));
-        Inventory.setBackground(backGround);
-        Inventory.setOpaque(true);
-        Inventory.setForeground(Color.white);
-        */
         menuBar.add(Inventory);
-
 
         //addItem label
         addItem.setBounds(width-width/4-200, 0, 200, 100);
@@ -98,51 +69,21 @@ public class SellerInventoryView extends JFrame{
         addItem.setForeground(Color.white);
 
         menuBar.add(addItem);
-        /*
-        //Profile information
-        info.setBounds(0, 100, width-width/4-20, height*2);
-        info.setBackground(bg);
-        info.setOpaque(true);
-
-        this.add(info);
-        */
-        //inventory.setBounds(0, 100, width-width/4, height-100);
+        this.setBackground(bg);
+	this.setLayout(null);
+        
+        inventory.setBounds(0, 100, width-width/4, height-100);
         inventory.setLayout(new BoxLayout(inventory,BoxLayout.Y_AXIS));//setting box layout for inventory view
         inventory.setBorder(BorderFactory.createLineBorder(Color.black));
         inventory.setAutoscrolls(true);
-        //scrollPane=new JScrollPane(inventory,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        //scrollPane.setBounds(0, 100, width-width/6, height-200);
-        this.add(inventory);//scroll bar
-        //scroll bar
-        /*
-        JScrollBar s = new JScrollBar(JScrollBar.VERTICAL, 0, 50, 0, height);
-        s.setBounds(width-width/4-20, 100, 20, height-200);
-
-        //Action listener for scroll bar
-        s.addAdjustmentListener(new AdjustmentListener() {  
-                public void adjustmentValueChanged(AdjustmentEvent e) {  
-                        info.setLocation((0), (int) -s.getValue()*2+100);
-
-                        //this.repaint();
-                }  
-        });
-
-        this.add(s);
-
-*/
-
-
-
-
-        this.setBackground(bg);
-        //this.setOpaque(true);
-        this.setLayout(null);
-
+        scroll = new JScrollPane(inventory,VERTICAL_SCROLLBAR_ALWAYS,HORIZONTAL_SCROLLBAR_NEVER);
+        this.add(scroll);//scroll bar
+      
        }
     public void addProductPanel(Product p){
         JPanel product = new ProductPanelView(p);
-        inventory.add(product);
-        //inventory.revalidate();
+        scroll.add(product);
+        scroll.revalidate();
     }
 
 }
