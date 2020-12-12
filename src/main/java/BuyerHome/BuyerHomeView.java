@@ -11,10 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextField;
 
-/**
- *
- * @author jonat
- */
+
 public class BuyerHomeView extends JFrame{
     public JLabel menuBar = new JLabel();
     public JButton signout = new JButton("Sign Out");
@@ -28,12 +25,12 @@ public class BuyerHomeView extends JFrame{
     public JLabel history = new JLabel();
     public JLabel historyTitle = new JLabel("Inventory");
     public JList displayInventory = new JList();
+    public String name;
     
     public BuyerHomeView(){
         build();
     }
     public void build(){
-        String name = "Brent Werne";
         Color backGround = new Color(151, 186, 255);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int width=(int)screenSize.getWidth();
@@ -41,7 +38,7 @@ public class BuyerHomeView extends JFrame{
         this.setBounds(width/8, 1, width-width/4, height);
 	JLabel profileName = new JLabel(name);
 	JLabel profilePic = new JLabel();
-	JLabel cardHolder = new JLabel("Card Holder Name:");
+	JLabel cardHolder = new JLabel("UserName:");
 	JLabel profileName1 = new JLabel(name);
 
 	
@@ -136,9 +133,7 @@ public class BuyerHomeView extends JFrame{
 		
 	historyTitle.setFont(new Font("Arial", Font.BOLD, 35));
 	historyTitle.setForeground(Color.white);
-		
-		
-	this.add(info);
+	
 	this.add(menuBar);
 	profile.add(cityState);
 	profile.add(profileCity);
@@ -152,8 +147,7 @@ public class BuyerHomeView extends JFrame{
 	info.add(profile);
 	history.add(historyTitle);
 	info.add(history);
-		
-		
+	this.add(info);	
 	this.setBackground(bg);
 	this.setLayout(null);
     

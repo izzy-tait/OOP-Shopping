@@ -1,5 +1,9 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Inventory;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -20,10 +24,7 @@ import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS;
 import javax.swing.ScrollPaneLayout;
 
-public class SellerInventoryView extends JFrame {
-    
-    public JLabel menuBar = new JLabel();
-    public JButton home = new JButton("Home");
+public class ShoppingCartView extends JFrame {
     public Color bg = new Color(221,221,221);
     public JPanel inventory = new JPanel();
     public JScrollPane inventoryScroll = new JScrollPane();
@@ -31,10 +32,9 @@ public class SellerInventoryView extends JFrame {
     private int width=(int)screenSize.getWidth();
     private int height = (int)screenSize.getHeight();
     private GridBagConstraints c = new GridBagConstraints();
-    public JButton addItem = new JButton("Add Item");
     int totalComponents=0;
     
-    public SellerInventoryView(){
+    public ShoppingCartView(){
         build();
     }
     
@@ -42,38 +42,8 @@ public class SellerInventoryView extends JFrame {
         Color backGround = new Color(151, 186, 255);
         this.setBounds(width/8, 1, (width-width/4)+50, height-100);
         //adds panels to JFrame
-	this.add(menuBar);
 	this.setBackground(bg);
 	this.setLayout(null);
-        //Customizes Menubar
-	menuBar.setBounds(0, 0, width-width/4, 100);
-	menuBar.setBackground(backGround);
-	menuBar.setOpaque(true);
-	menuBar.setBorder(BorderFactory.createLineBorder(Color.black));
-	menuBar.add(home);//adds Home button to Menubar
-        
-	//Customizes Home Button for Menubar
-	home.setBounds(0, 0, 200, 100);
-	home.setBorder(BorderFactory.createLineBorder(Color.black));
-	home.setLayout(null);
-        
-	home.setHorizontalAlignment(JTextField.CENTER);
-	home.setFont(new Font("Arial", Font.BOLD, 35));
-	home.setBackground(backGround);
-	home.setOpaque(true);
-	home.setForeground(Color.white);
-        
-        addItem.setBounds(width-width/4-200, 0, 200, 100);
-	addItem.setBorder(BorderFactory.createLineBorder(Color.black));
-	addItem.setLayout(null);
-        
-	addItem.setHorizontalAlignment(JTextField.CENTER);
-	addItem.setFont(new Font("Arial", Font.BOLD, 35));
-	addItem.setBackground(backGround);
-	addItem.setOpaque(true);
-	addItem.setForeground(Color.white);
-        
-        menuBar.add(addItem);
         
         //inventory.setBounds(0, 100, (width-width/4), height-300);
         inventory.setBounds(0, 100,(width-width/4) , 1000);
@@ -92,8 +62,7 @@ public class SellerInventoryView extends JFrame {
         JPanel product = new ProductPanelView(p);
         inventory.setBounds(0, 100, (width-width/4), height-300+(totalComponents*140));
         totalComponents++;
-        //inventory.add(product,c);
-        inventory.add(product);
+        inventory.add(product,c);
         inventory.revalidate();
         inventoryScroll.revalidate();
     }

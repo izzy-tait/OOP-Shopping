@@ -20,12 +20,13 @@ public class SellerHomeView extends JFrame{
     	JLabel menuBar = new JLabel();
 	JButton home = new JButton("Home");
 	public JButton Inventory = new JButton("Inventory");
+        public JButton signout = new JButton("Signout");
 	JLabel info = new JLabel();
 	Color bg = new Color(221,221,221);
 	JLabel profile = new JLabel();
 	JLabel history = new JLabel();
 	JLabel add = new JLabel("Shopping History");
-	SellerAccount currentUser;
+	public SellerAccount currentUser;
 	JLabel profileName = new JLabel("");
 	JLabel sellerName = new JLabel("");
 	JLabel itemsSold = new JLabel("Total items sold: 0");
@@ -33,7 +34,7 @@ public class SellerHomeView extends JFrame{
 	JLabel yearlyIncome = new JLabel("This years income: 0");
 	JLabel monthlyRevenue = new JLabel("This months revenue: 0");
 	JLabel monthlyIncome = new JLabel("This months income: 0");
-	
+	public String name;
         Color backGround = new Color(151, 186, 255);
         
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -45,10 +46,9 @@ public class SellerHomeView extends JFrame{
        build();
    }
    
-   
-   
    public void build()
    {
+       sellerName= new JLabel(name);
        Font fn = new Font("Arial", Font.BOLD, 25);
 		
 		this.setBounds(width/8, 1, width-width/4, height);
@@ -75,6 +75,19 @@ public class SellerHomeView extends JFrame{
 		
 		menuBar.add(home);
 		
+                //Home label
+		signout.setBounds(width-width/4-200, 0, 200, 100);
+		signout.setBorder(BorderFactory.createLineBorder(Color.black));
+		signout.setLayout(null);
+		signout.setHorizontalAlignment(JTextField.CENTER);
+		
+		signout.setFont(new Font("Arial", Font.BOLD, 35));
+		signout.setBackground(backGround);
+		signout.setOpaque(true);
+		signout.setForeground(Color.white);
+		
+		menuBar.add(signout);
+                
 		//Let's Shop
 		Inventory.setBounds(200, 0, 200, 100);
 		Inventory.setBorder(BorderFactory.createLineBorder(Color.black));

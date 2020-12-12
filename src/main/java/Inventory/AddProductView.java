@@ -43,42 +43,42 @@ public class AddProductView extends JFrame{
         pageTitle.setBounds(190, 5, 150, 40);
         addItemPanel.add(pageTitle);
         //sellerName
-        sNameLabel.setBounds(100, 25, 80, 25);
+        sNameLabel.setBounds(100, 45, 80, 25);
         addItemPanel.add(sNameLabel);
         //first name text field configurations 
-        sNameText.setBounds(190, 25, 165, 25);
+        sNameText.setBounds(190, 45, 165, 25);
         addItemPanel.add(sNameText);
         
         //first name label configurations 
-        pNameLabel.setBounds(100, 50, 80, 25);
+        pNameLabel.setBounds(100, 85, 80, 25);
         addItemPanel.add(pNameLabel);
         //first name text field configurations 
-        pNameText.setBounds(190, 50, 165, 25);
+        pNameText.setBounds(190, 85, 165, 25);
         addItemPanel.add(pNameText);
 
         //last name label configurations 
-        priceLabel.setBounds(100, 100, 80, 25);
+        priceLabel.setBounds(100, 125, 80, 25);
         addItemPanel.add(priceLabel);
         //last name text field configurations 
-        priceText.setBounds(190, 100, 165, 25);
+        priceText.setBounds(190, 125, 165, 25);
         addItemPanel.add(priceText);
 
         //username label configurations
-        costLabel.setBounds(100, 200, 80, 25);
+        costLabel.setBounds(100, 165, 80, 25);
         addItemPanel.add(costLabel);
         //username text field configurations
-        costText.setBounds(190, 200, 165, 25);
+        costText.setBounds(190, 165, 165, 25);
         addItemPanel.add(costText);
 
         //password label configurations
-        prodQuanLabel.setBounds(100, 300, 80, 25);
+        prodQuanLabel.setBounds(100, 205, 80, 25);
         addItemPanel.add(prodQuanLabel);
         //username text field configurations
-        prodQuanText.setBounds(190, 300, 165, 25);
+        prodQuanText.setBounds(190, 205, 165, 25);
         addItemPanel.add(prodQuanText);
         
         //signup button configurations
-        submit.setBounds(225, 500, 90, 25);
+        submit.setBounds(225, 280, 90, 25);
         addItemPanel.add(submit);
 
     }

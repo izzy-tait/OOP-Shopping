@@ -7,6 +7,8 @@ package Inventory;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class ProductPanelView extends JPanel{
@@ -14,6 +16,7 @@ public class ProductPanelView extends JPanel{
     Color backGround = new Color(140, 150, 255);
     Product p;
     JLabel quantity;
+    JButton addItem = new JButton("Add Item");
     
     public ProductPanelView(Product aProduct)
     {
@@ -51,7 +54,20 @@ public class ProductPanelView extends JPanel{
         price.setFont(fn1);
         price.setOpaque(true);
         price.setBackground(backGround);
+        
+        
+        addItem.setBounds(105,90,140,30);
+        addItem.setOpaque(true);
+        addItem.setBackground(backGround);
+        
+        addItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                //addToShoppingCart(p);
+            }   
+        });
 
+        this.add(addItem);
         this.add(price);
 
         this.setBorder(BorderFactory.createLineBorder(Color.black));

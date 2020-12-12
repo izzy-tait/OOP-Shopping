@@ -3,14 +3,13 @@ package login;
 import Inventory.*;
 import SellerHome.*;
 import BuyerHome.*;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
 
 public class App
 {   
+    private static Account currentUser;
     public static void main(String[] args) 
     {
         AccountList accounts = AccountList.getInstance();
@@ -23,35 +22,8 @@ public class App
         BuyerHomeView bHome = new BuyerHomeView();
         BuyerInventoryView bHomeInv = new BuyerInventoryView();
         Inventory inventory = new Inventory();
-        
-       SerilizationList<BuyerAccount> buyerList = new SerilizationList<BuyerAccount>("BuyerList.ser");
-       SerilizationList<SellerAccount> sellerList = new SerilizationList<>("SellerList.ser");
-       SerilizationList<Account> accountList = new SerilizationList<>("AccountList.ser");
-       SerilizationList<Product> productList = new SerilizationList<>("productList.ser");
-       SerilizationList<Inventory> inventoryList = new SerilizationList<>("InventoryList.ser");
-       SerilizationList<AccountList> accountListLst = new SerilizationList<>("AccountListLst.ser");
-       buyerList.load();
-       sellerList.load();
-       accountList.load();
-       productList.load();
-       inventoryList.load();
-       accountListLst.load();
-        //public Product(String asellerName, String aname, String aprice, String acost, String aquantity) {
-        
-        //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        //int width=(int)screenSize.getWidth();
-        //int height = (int)screenSize.getHeight();jjj
-        
-        //ArrayList<JButton> editInv = new ArrayList<JButton>();
-	//ArrayList<JButton> deleteInv = new ArrayList<JButton>();
-	//ArrayList<JButton> addInv = new ArrayList<JButton>();
-        
-        Product oreo = new Product("Isabel", "Oreo", "4.99", "6", "50");
-        inventory.addProduct(oreo);
-        Product oreo1 = new Product("Jon", "Pasta", "5.99", "6", "50");
-        inventory.addProduct(oreo1);
-        inventory.addProduct(oreo1);
-        inventory.addProduct(oreo1);
+        ShoppingCartView shopCartView = new ShoppingCartView();
+        ShoppingCart cart = new ShoppingCart();
         
         addProductView.submit.addActionListener(
             new ActionListener() {
@@ -65,6 +37,8 @@ public class App
                     inventory.addProduct(new Product(sellerName,prodName,prodPrice,prodCost,prodQuan));
                     
                     addProductView.setVisible(false);
+                    sellerInventoryView.revalidate();
+                    sellerInventoryView.repaint();
                     sellerInventoryView.setVisible(true);
                 }  
             }      
@@ -75,6 +49,7 @@ public class App
                     System.out.println("Changing views");
                     bHome.setVisible(false);
                     login.setVisible(true);
+                    currentUser=null;
                 }  
             }      
         );
@@ -86,7 +61,9 @@ public class App
                     System.out.println("Changing views");
                     bHome.setVisible(false);
                     bHomeInv.setVisible(true);
-                    
+                    bHomeInv.inventory.removeAll();
+                    bHomeInv.inventory.revalidate();
+                    bHomeInv.inventory.repaint();
                     Iterator inventoryIterator = inventory.createIterator();
                     while (inventoryIterator.hasNext())
                     {
@@ -99,6 +76,27 @@ public class App
                 }  
             }      
         );
+        bHome.cart.addActionListener(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("Changing views");
+                    shopCartView.inventory.removeAll();
+                    shopCartView.inventory.revalidate();
+                    shopCartView.inventory.repaint();
+                    Iterator inventoryIterator = inventory.createIterator();
+                    while (inventoryIterator.hasNext())
+                    {
+                        Product p = (Product)inventoryIterator.next();//gets product
+                        System.out.println(p.getProductName());
+                        bHomeInv.addProductPanel(p);
+                    }
+                    //bHomeInv.pack();
+                    System.out.println("Added All Inventory");
+                    shopCartView.setVisible(true);
+                }  
+            }      
+        );
+        
         
         bHomeInv.home.addActionListener(
             new ActionListener() {
@@ -109,7 +107,6 @@ public class App
                 }  
             }      
         );
-        
         
         login.loginButton.addActionListener(
             new ActionListener() {
@@ -122,11 +119,18 @@ public class App
                     if(user!=null){
                         if(user instanceof BuyerAccount){
                             login.setVisible(false);
+                            currentUser=user;
+                            bHome.name=username;
+                            bHome.build();
                             bHome.setVisible(true);
                         }
                         else if(user instanceof SellerAccount){
                             login.setVisible(false);
+                            sHome.currentUser=(SellerAccount)user;
+                            sHome.updateSellerHome();
+                            sHome.build();
                             sHome.setVisible(true);
+                            currentUser=user;
                         }
                         else{
                             System.out.println("View error");
@@ -178,20 +182,14 @@ public class App
                     if(signup.tog == "Buyer")
                     {
                         accounts.addAccount(new BuyerAccount(username, password, fName, lName));
-                        buyerList.save();
-                        accountList.save();
-                        accountListLst.save();
                         System.out.println("Added Buyer Account: "+username);
                     }
                     
                     else if(signup.tog == "Seller") //if tog=="Seller" (the user wants to create a seller account)
                     { 
-                        accounts.addAccount(new SellerAccount(username, password, fName, lName));
-                        sellerList.save();
-                        accountList.save();
+                        accounts.addAccount(new SellerAccount(username, password, fName, lName));                       
                         System.out.println("Added Seller Account: "+username);
                     }
-
                     signup.setVisible(false);
                     login.setVisible(true);
 
@@ -205,7 +203,9 @@ public class App
                 public void actionPerformed(ActionEvent e) {
                     sHome.setVisible(false);
                     sellerInventoryView.setVisible(true);
-                    
+                    sellerInventoryView.inventory.removeAll();
+                    sellerInventoryView.inventory.revalidate();
+                    sellerInventoryView.inventory.repaint();
                     Iterator inventoryIterator = inventory.createIterator();
                     while (inventoryIterator.hasNext())
                     {
@@ -216,16 +216,33 @@ public class App
                 }
             }
         );
+        sHome.signout.addActionListener(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("Changing views");
+                    sHome.setVisible(false);
+                    login.setVisible(true);
+                    currentUser=null;
+                }  
+            }      
+        );
        
        //The button on the Seller Inventory page to add new item to the inventory
        sellerInventoryView.addItem.addActionListener(
             new ActionListener(){
                 public void actionPerformed(ActionEvent e){
                   addProductView.setVisible(true); 
-                  productList.save();
-                  inventoryList.save();
                 }
             });
+       sellerInventoryView.home.addActionListener(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("Changing views");
+                    sellerInventoryView.setVisible(false);
+                    sHome.setVisible(true);
+                }  
+            }      
+        );
        
        //Button on Seller Inventory page to get back to Seller Home page
         sellerInventoryView.home.addActionListener(
